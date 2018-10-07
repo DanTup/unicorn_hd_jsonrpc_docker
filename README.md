@@ -1,6 +1,6 @@
 # DanTup / unicorn_hd_jsonrpc
 
-A Docker container that exposes the Unicorn HD Hat library for Raspberry Pi over JSON-RPC WebSocket.
+A Docker container that exposes the Unicorn HD Hat library for Raspberry Pi over JSON-RPC WebSocket so that it can easily be controlled from other devices on your LAN and using any programming language.
 
 ```
 docker run -p=8050:8050 --device=/dev/spidev0.0 dantup/unicorn_hd_jsonrpc
