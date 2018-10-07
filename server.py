@@ -73,6 +73,7 @@ if __name__ == "__main__":
 
     start_server = websockets.serve(accept_connection, port=args.port)
     asyncio.get_event_loop().run_until_complete(start_server)
+    print("Listening on port %s." % args.port)
 
     try:
         asyncio.get_event_loop().run_forever()
