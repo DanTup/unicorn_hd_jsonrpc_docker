@@ -12,10 +12,11 @@ The port can be customised by passing `-p PORT` to the command:
 PORT=8051; docker run -p=$PORT:$PORT --device=/dev/spidev0.0 dantup/unicorn_hd_jsonrpc -p $PORT
 ```
 
-You can see help on other arguments (such as setting default rotation and whether to turn the screen off when quitting) with `-h`:
+You can see help on other arguments (such as setting default rotation, brightness and whether to turn the screen off when quitting) with `-h`:
 
 ```
 docker run dantup/unicorn_hd_jsonrpc -h
+docker run -p=8050:8050 --restart=unless-stopped --device=/dev/spidev0.0 dantup/unicorn_hd_jsonrpc -r 270 -b 0.05
 ```
 
 Once running, use a JSON-RPC library for your favourite language to control the Unicorn HD Hat. An example using Dart is shown below.
