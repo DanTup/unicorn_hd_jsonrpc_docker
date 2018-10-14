@@ -16,7 +16,12 @@ You can see help on other arguments (such as setting default rotation, brightnes
 
 ```
 docker run dantup/unicorn_hd_jsonrpc -h
-docker run -p=8050:8050 --restart=unless-stopped --device=/dev/spidev0.0 dantup/unicorn_hd_jsonrpc -r 270 -b 0.05
+```
+
+For example, to run detached, restarting automatically at boot unless stopped and with a custom brightness/rotation, you can do:
+
+```
+docker run -d -p=8050:8050 --restart=unless-stopped --device=/dev/spidev0.0 dantup/unicorn_hd_jsonrpc -r 270 -b 0.05
 ```
 
 Once running, use a JSON-RPC library for your favourite language to control the Unicorn HD Hat. An example using Dart is shown below.
