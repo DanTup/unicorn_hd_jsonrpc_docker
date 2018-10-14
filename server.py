@@ -10,8 +10,8 @@ async def ping():
     return 'pong'
 
 @methods.add
-async def brightness(b):
-    return unicornhd.brightness(b)
+async def set_brightness(b):
+    return unicornhathd.brightness(b)
 
 @methods.add
 async def clear():
@@ -67,13 +67,16 @@ async def accept_connection(websocket, _):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Run a WebSocket JSON-RPC server for Unicorn Hat HD.')
     parser.add_argument('-r', '--rotation', type=int, default=0, help='The default rotation for the display.')
+    parser.add_argument('-b', '--brightness', type=float, default=0.5, help='The default brightness for the display.')
     parser.add_argument('-p', '--port', type=int, default=8050, help='The port to bind the WebSocket server to.')
     parser.add_argument('-k', '--keep-screen-on', action='store_true', help='Whether to keep the screen on when the server is terminated.')
     args = parser.parse_args()
 
     start_server = websockets.serve(accept_connection, port=args.port)
     asyncio.get_event_loop().run_until_complete(start_server)
-    print("Listening on port %s." % args.port)
+    asyncio.get_event_loop().run_until_complete(set_rotation(args.rotation))
+    asyncio.get_event_loop().run_until_complete(set_brightness(args.brightness))
+    print("Listening on port %s. Screen rotation is %s. Brightness is %s" % (args.port, args.rotation, args.brightness))
 
     try:
         asyncio.get_event_loop().run_forever()

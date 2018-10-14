@@ -1,4 +1,4 @@
-FROM dantup/unicorn_hd_demo
+FROM dantup/unicorn_hd
 WORKDIR /root/app/
 
 RUN pip install websockets jsonrpcserver
